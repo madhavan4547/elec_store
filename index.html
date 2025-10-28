@@ -1,0 +1,382 @@
+	
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electronics Store</title>
+<style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f5f5;}
+  header { background:#0077cc; color:#fff; padding:15px; text-align:center; }
+
+  /* Make category buttons bigger */
+  nav { display:flex; justify-content:center; background:#eee; padding:15px; gap:20px;}
+  nav button { 
+    padding:15px 40px; 
+    cursor:pointer; 
+    border:none; 
+    background:#0077cc; 
+    color:#fff; 
+    border-radius:10px; 
+    font-size:18px; 
+    font-weight:bold;
+  }
+  nav button:hover { background:#005fa3; }
+
+  /* Layout for brands and products */
+  #brands, #products { display:flex; flex-wrap:wrap; justify-content:center; margin:20px; gap:20px; }
+  .brand, .product { background:#fff; padding:15px; border-radius:10px; box-shadow:0 3px 6px rgba(0,0,0,0.2); text-align:center; width:180px;}
+  .brand img, .product img { width:100%; height:120px; object-fit:cover; border-radius:8px;}
+  h4 { margin:10px 0 5px; font-size:16px;}
+  p { color:#333; font-weight:bold;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Electronics Store</h1>
+</header>
+
+<nav>
+  <button onclick="showBrands('mobiles')">📱 Mobiles</button>
+  <button onclick="showBrands('laptops')">💻 Laptops</button>
+  <button onclick="showBrands('tvs')">📺 TVs</button>
+</nav>
+
+<div id="brands"></div>
+<div id="products"></div>
+
+<script>
+let data = {};
+
+// ---------- Brand Logos (use your image files) ----------
+let brandLogos = {
+  // Mobiles
+  Redmi: "redmi.PNG",
+  Realme:"realme.PNG",
+  OnePlus: "oneplus.PNG",
+  Oppo: "oppo.PNG",   // ✅ Oppo logo added
+  iPhone: "iphone.JPG",
+  Samsung: "samsung.PNG",
+  // Laptops
+  Asus: "asus.jpg",
+  Acer: "acer.PNG",
+  Apple: "aapl_e.jpg",
+  HP: "hp.PNG",
+  // TVs
+  Sony: "sony.PNG",
+  Nokia: "nokia.PNG",
+  LG: "lg.PNG"
+};
+
+// -------- Mobiles --------
+data['mobiles'] = {
+Redmi: [
+{name:'Redmi Note 13 Pro+ 5G', price:'₹22999', img:'Redmi Note 13 Pro+ 5G.JPg'},
+{name:'Redmi Note 9', price:'₹11999', img:'Redmi Note 9.jpg'},
+{name:'Redmi Note 9 Pro', price:'₹13999', img:'Redmi Note 9 Pro.jpg'},
+{name:'Redmi Note 9 Pro Max', price:'₹16499', img:'Redmi Note 9 Pro max.jpg'},
+{name:'Redmi 15', price:'₹15999', img:'Redmi 15.jpg'},
+{name:'Redmi 9 Prime ', price:'₹9999', img:'Redmi 9 Prime.jpg'},
+{name:'Redmi 9A', price:'₹6799', img:'Redmi 9A.jpg'},
+{name:'Redmi 9i', price:'₹8299', img:'Redmi 9i.jpg'},
+{name:'Redmi Note 10', price:'₹11999', img:'Redmi Note 10.jpg'},
+{name:'Redmi Note 10 Pro', price:'₹15999', img:'Redmi Note 10 Pro.JPG'},
+{name:'Redmi Note 10 Pro Max', price:'₹18999', img:'Redmi Note 10 Pro Max.jpg'},
+{name:'Redmi Note 10S', price:'₹14999', img:'Redmi Note 10S.JPG'},
+{name:'Redmi 10 Prime', price:'₹12499', img:'Redmi 10 Prime.JPG'},
+{name:'Redmi Note 11', price:'₹13499', img:'Redmi Note 11.jpg'},
+{name:'Redmi Note 11 Pro', price:'₹17999', img:'Redmi Note 11 Pro.jpg'},
+{name:'Redmi Note 14 SE', price:'₹14999', img:'Redmi Note 14 SE.JPG'},
+{name:'Redmi A5', price:'₹7499', img:'Redmi A5.jpg'},
+{name:'Redmi Note 11 Pro+ ', price:'₹19999', img:'Redmi Note 11 Pro+.jpg'},
+{name:'Redmi Note 12', price:'₹16499', img:'Redmi Note 12.jpg'},
+{name:'Redmi Note 12 Pro', price:'₹24499', img:'Redmi Note 12 Pro.jpg'}
+
+
+// ... add up to 15
+],
+Realme: [
+{name:'realme GT 7 Pro', price:'₹49998', img:'realme GT 7 Pro.jpg'},
+{name:'realme P4 Pro', price:'₹25000', img:'realme P4 Pro.jpg'},
+{name:'realme 12 Pro', price:'₹20000', img:'realme 12 Pro.jpg'},
+{name:'realme Narzo 80 Pro', price:'₹20000', img:'realme Narzo 80 Pro.jpg'},
+{name:'realme 14x', price:'₹4249', img:'realme 14x.jpg'},
+{name:'realme Narzo 80X', price:'₹11700', img:'realme Narzo 80X.jpg'},
+{name:'realme 7Pro', price:'₹20000', img:'realme 7Pro.jpg'},
+{name:'realme C75', price:'₹12249', img:'realme C75.jpg'},
+{name:'realme Narzo 70', price:'₹15000', img:'realme Narzo 70.jpg'},
+{name:'realme 13', price:'₹16000', img:'realme 13.jpg'},
+{name:'realme C63', price:'₹17000', img:'realme C63.jpg'},
+{name:'realme P2 Pro', price:'₹18000', img:'realme P2 Pro.jpg'},
+{name:'realme P3x', price:'₹15000', img:'realme P3x.jpg'},
+{name:'realme P3 Lite', price:'₹12000', img:'realme P3 Lite.jpg'},
+{name:'realme C71', price:'₹10000', img:'realme C71.jpg'},
+{name:'realme 7', price:'₹15000', img:'realme 7.jpg'},
+{name:'Realme GT 8 Pro', price:'₹44900', img:'Realme GT 8 Pro.jpg'},
+{name:'Realme GT 7', price:'₹32900', img:'Realme GT 7.jpg'},
+{name:'Realme GT 6T', price:'₹24900', img:'Realme GT 6T.jpg'},
+{name:'Realme Narzo 60', price:'₹18000', img:'Realme Narzo 60.jpg'}
+// ... up to 15
+],
+Oppo: [
+{name:'OPPO Reno 14 Pro 5G', price:'₹49999', img:'OPPO Reno 14 Pro 5G.jpg'},
+{name:'OPPO Find X8 Pro', price:'₹92999', img:'OPPO Find X8 Pro.jpg'},
+{name:'OPPO Reno 14 5G', price:'₹40000', img:'OPPO Reno 14 5G.jpg'},
+{name:'OPPO Reno 13 Pro 5G', price:'₹38000', img:'OPPO Reno 13 Pro 5G.jpg'},
+{name:'OPPO F31 Pro+ 5G', price:'₹33999', img:'OPPO F31 Pro+ 5G.jpg'},
+{name:'OPPO Reno 13 5G', price:'₹24999', img:'OPPO Reno 13 5G.jpg'},
+{name:'OPPO F31 Pro 5G', price:'₹26999', img:'OPPO F31 Pro 5G.jpg'},
+{name:'OPPO K13 Turbo Pro', price:'₹37999', img:'OPPO K13 Turbo Pro.jpg'},
+{name:'OPPO F31 5G', price:'₹23999', img:'OPPO F31 5G.jpg'},
+{name:'OPPO K13 Turbo', price:'₹22000', img:'OPPO K13 Turbo.jpg'},
+{name:'OPPO F29 Pro 5G', price:'₹24000', img:'OPPO F29 Pro 5G.jpg'},
+{name:'OPPO Reno 12 5G', price:'₹22999', img:'OPPO Reno 12 5G.jpg'},
+{name:'OPPO F27 Pro+ 5G', price:'₹18999', img:'OPPO F27 Pro+ 5G.jpg'},
+{name:'OPPO K13 5G', price:'₹17999', img:'OPPO K13 5G.jpg'},
+{name:'OPPO F29 5G', price:'₹19999', img:'OPPO F29 5G.jpg'},
+{name:'OPPO A5 Pro 5G', price:'₹17999', img:'OPPO A5 Pro 5G.jpg'},
+{name:'OPPO A3 Pro', price:'₹16999', img:'OPPO A3 Pro.jpg'},
+{name:'OPPO K13x 5G', price:'₹12999', img:'OPPO K13x 5G.jpg'},
+{name:'OPPO A3x 5G', price:'₹11499', img:'OPPO A3x 5G.jpg'},
+{name:'OPPO A5x', price:'₹12499', img:'OPPO A5x.jpg'}
+// ... up to 15
+],
+OnePlus: [
+{name:'OnePlus Open', price:'₹139999', img:'OnePlus Open.jpg'},
+{name:'OnePlus 13 ', price:'₹69997', img:'OnePlus 13.jpg'},
+{name:'OnePlus 13s', price:'₹54999', img:'OnePlus 13s.jpg'},
+{name:'OnePlus 12', price:'₹64999', img:'OnePlus 12.jpg'},
+{name:'OnePlus 13R', price:'₹42999', img:'OnePlus 13R.jpg'},
+{name:'OnePlus 11R ', price:'₹39999', img:'OnePlus 11R.jpg'},
+{name:'OnePlus Nord 5', price:'₹31999', img:'OnePlus Nord 5.jpg'},
+{name:'OnePlus Nord 4', price:'₹29999', img:'OnePlus Nord 4.jpg'},
+{name:'OnePlus Nord CE 5 5G', price:'₹24999', img:'OnePlus Nord CE 5 5G.jpg'},
+{name:'OnePlus Nord CE 4 5G', price:'₹22999', img:'OnePlus Nord CE 4 5G.jpg'},
+{name:'OnePlus Nord CE 4 Lite 5G ', price:'₹17999', img:'OnePlus Nord CE 4 Lite 5G.jpg'},
+{name:'OnePlus 12R', price:'₹42999', img:'OnePlus 12R.jpg'},
+{name:'OnePlus Nord 3 5G', price:'₹25999', img:'OnePlus Nord 3 5G.jpg'},
+{name:'OnePlus 11', price:'₹40900', img:'OnePlus 11.jpg'},
+{name:'OnePlus 10T 5G ', price:'₹33999', img:'OnePlus 10T 5G.jpg'},
+{name:'OnePlus Nord CE 3 Lite 5G ', price:'₹18999', img:'OnePlus Nord CE 3 Lite 5G.jpg'},
+{name:'OnePlus 10 Pro', price:'₹35949', img:'OnePlus 10 Pro.jpg'},
+{name:'OnePlus 10R 5G', price:'₹38999', img:'OnePlus 10R 5G.jpg'},
+{name:'OnePlus 9RT', price:'₹25999', img:'OnePlus 9RT.jpg'},
+{name:'OnePlus CE 3', price:'₹18000', img:'OnePlus CE 3.jpg'}
+// ... up to 15
+],
+iPhone: [
+{name:'iPhone 17 Pro Max', price:'₹149900', img:'iPhone 17 Pro Max.jpg'},
+{name:'iPhone 17 Pro', price:'₹139900', img:'iPhone 17 Pro.jpg'},
+{name:'iPhone 17', price:'₹82900', img:'iPhone 17.jpg'},
+{name:'iPhone Air', price:'₹119900', img:'iPhone Air.jpg'},
+{name:'iPhone 16 Pro Max', price:'₹99999', img:'iPhone 16 Pro Max.jpg'},
+{name:'iPhone 16 Pro', price:'₹87999', img:'iPhone 16 Pro.jpg'},
+{name:'iPhone 16 Plus', price:'₹78999', img:'iPhone 16 Plus.jpg'},
+{name:'iPhone 16', price:'₹64999', img:'iPhone 16.jpg'},
+{name:'iPhone 16e', price:'₹52999', img:'iPhone 16e.jpg'},
+{name:'iPhone 15 Pro Max', price:'₹99499', img:'iPhone 15 Pro Max.jpg'},
+{name:'iPhone 15', price:'₹60999', img:'iPhone 15.jpg'},
+{name:'iPhone 14', price:'₹44999', img:'iPhone 14.jpg'},
+{name:'iPhone 13', price:'₹45690', img:'iPhone 13.jpg'},
+{name:'iPhone SE', price:'₹32699', img:'iPhone SE.jpg'},
+{name:'iPhone 12 Pro max', price:'₹36999', img:'iPhone 12 Pro max.jpg'},
+{name:'iPhone 11', price:'₹49900', img:'iPhone 11.jpg'},
+{name:'iPhone 14 Pro', price:'₹150999', img:'iPhone 14 Pro.jpg'},
+{name:'iPhone 12 Mini', price:'₹134900', img:'iPhone 12 Mini.jpg'},
+{name:'iPhone 17 Pro Max (1TB variant)', price:'₹189900', img:'iPhone 17 Pro Max (1TB variant).jpg'},
+{name:'iPhone 17 Pro Max (2TB variant)', price:'₹229900', img:'iPhone 17 Pro Max (2TB variant).jpg'}
+// ... up to 15
+],
+Samsung: [
+{name:'Samsung Galaxy S25 Ultra', price:'₹98900', img:'Samsung Galaxy S25 Ultra.jpg'},
+{name:'Samsung Galaxy S25', price:'₹61990', img:'Samsung Galaxy S25.jpg'},
+{name:'Samsung Galaxy Z Flip7', price:'₹109999', img:'Samsung Galaxy Z Flip7.jpg'},
+{name:'Samsung Galaxy S24 5G', price:'₹46999', img:'Samsung Galaxy S24 5G.jpg'},
+{name:'Samsung Galaxy S24 Ultra', price:'₹79999', img:'Samsung Galaxy S24 Ultra.jpg'},
+{name:'Samsung Galaxy A55 5G', price:'₹23999', img:'Samsung Galaxy A55 5G.jpg'},
+{name:'Samsung Galaxy A35 5G', price:'₹17999', img:'Samsung Galaxy A35 5G.jpg'},
+{name:'Samsung Galaxy A26 5G', price:'₹24999', img:'Samsung Galaxy A26 5G.jpg'},
+{name:'Samsung Galaxy A16', price:'₹18999', img:'Samsung Galaxy A16.jpg'},
+{name:'Samsung Galaxy M17 ', price:'₹12999', img:'Samsung Galaxy M17.jpg'},
+{name:'Samsung Galaxy M36 5G', price:'₹13999', img:'Samsung Galaxy M36 5G.jpg'},
+{name:'Samsung Galaxy M06 5G', price:'₹7999', img:'Samsung Galaxy M06 5G.jpg'},
+{name:'Samsung Galaxy F17 5G', price:'₹12990', img:'Samsung Galaxy F17 5G.jpg'},
+{name:'Samsung Galaxy F06 5G', price:'₹8530', img:'Samsung Galaxy F06 5G.jpg'},
+{name:'Samsung Galaxy S25 Edge', price:'₹101999', img:'Samsung Galaxy S25 Edge.jpg'},
+{name:'Samsung Galaxy S25 Plus', price:'₹84990', img:'Samsung Galaxy S25 Plus.jpg'},
+{name:'Samsung Galaxy S25 FE', price:'₹59900', img:'Samsung Galaxy S25 FE.jpg'},
+{name:'Samsung Galaxy A06 5G ', price:'₹9899', img:'Samsung Galaxy A06 5G.jpg'},
+{name:'Samsung Galaxy A17 5G', price:'₹17499', img:'Samsung Galaxy A17 5G.jpg'},
+{name:'Samsung Galaxy S21', price:'₹50000', img:'Samsung Galaxy S21.jpg'}
+// ... up to 15
+]
+};		
+
+// -------- Laptops --------
+data['laptops'] = {
+Asus: [
+
+{name:'ASUS Vivobook 15', price:'₹32900', img:'ASUS Vivobook 15.jpg'},
+{name:'ASUS TUF Gaming A15', price:'₹57990', img:'ASUS TUF Gaming A15.jpg'},
+{name:'ASUS Zenbook 14 OLED (Intel)', price:'₹92990', img:'ASUS Zenbook 14 OLED (Intel).jpg'},
+{name:'ASUS Zenbook A14 OLED 2025', price:'₹92990', img:'ASUS Zenbook A14 OLED 2025.jpg'},
+{name:'ASUS Zenbook S16 UM5606WA', price:'₹129900', img:'ASUS Zenbook S16 UM5606WA.jpg'},
+{name:'ASUS Vivobook S14 Flip 2025', price:'₹57900', img:'ASUS Vivobook S14 Flip 2025.jpg'},
+{name:'ASUS Vivobook Go 14', price:'₹28990', img:'ASUS Vivobook Go 14.jpg'},
+{name:'ASUS V16 16″ Intel Core 5', price:'₹75990', img:'ASUS V16 16″ Intel Core 5.jpg'},
+{name:'ASUS Vivobook 15 (Budget)', price:'₹40990', img:'ASUS Vivobook 15 (Budget).jpg'},
+{name:'ASUS Zenbook A14', price:'₹78457', img:'ASUS Zenbook A14.jpg'},
+{name:'ASUS Zenbook 14 SmartChoice (AMD)', price:'₹87990', img:'ASUS Zenbook 14 SmartChoice (AMD).jpg'},
+{name:'ASUS Vivobook S14 Flip (alternate config)', price:'₹94500', img:'ASUS Vivobook S14 Flip (alternate config).jpg'},
+{name:'ASUS Vivobook 15 (alternate config)', price:'₹85000', img:'ASUS Vivobook 15 (alternate config).jpg'},
+{name:'ASUS Zenbook 14 OLED (Premium)', price:'₹104899', img:'ASUS Zenbook 14 OLED (Premium).jpg'},
+{name:'ASUS Zenbook S16 (Higher spec)', price:'₹129990', img:'ASUS Zenbook S16 (Higher spec).jpg'}
+// ... up to 15
+],
+Acer: [
+{name:'Acer Aspire 3 (Celeron N4500)', price:'₹17990', img:'Acer Aspire 3 (Celeron N4500).jpg'},
+{name:'Acer Aspire 3 (14″, Intel i3-13th Gen)', price:'₹22999', img:'Acer Aspire 3 (14″, Intel i3-13th Gen).jpg'},
+{name:'Acer Aspire Lite (Ryzen 5)', price:'₹32999', img:'Acer Aspire Lite (Ryzen 5).jpg'},
+{name:' Acer Aspire (12th Gen Intel i5) ', price:'₹48999', img:'Acer Aspire (12th Gen Intel i5).jpg'},
+{name:'Acer Aspire 7 Gaming Laptop', price:'₹52990', img:'Acer Aspire 7 Gaming Laptop.jpg'},
+{name:'Acer ALG Gaming Laptop', price:'₹65999', img:'Acer ALG Gaming Laptop.jpg'},
+{name:'Acer Nitro V (Ryzen 5 + RTX 3050)', price:'₹57850', img:'Acer Nitro V (Ryzen 5 + RTX 3050).jpg'},
+{name:'Acer Nitro V 15 (i5-13th + RTX 5050)', price:'₹79990', img:'Acer Nitro V 15 (i5-13th + RTX 5050).jpg'},
+{name:'Acer Nitro V Gaming Laptop (High Spec)', price:'₹85999', img:'Acer Nitro V Gaming Laptop (High Spec).jpg'},
+{name:'Acer Nitro V Gaming Laptop (Alt Seller)', price:'₹78999', img:'Acer Nitro V Gaming Laptop (Alt Seller).jpg'},
+{name:'Acer Aspire Lite Gaming Laptop', price:'₹38999', img:'Acer Aspire Lite Gaming Laptop.jpg'},
+{namev:' Acer Aspire Thin & Light (14″ i5) ', price:'₹48999', img:'Acer Aspire Thin & Light (14″ i5).jpg'},
+{name:'Acer Aspire 7 (Alt Listing)', price:'₹52990', img:'Acer Aspire 7 (Alt Listing).jpg'},
+{name:'Acer ALG Gaming (Alt Version)', price:'₹65999', img:'Acer ALG Gaming (Alt Version).jpg'},
+{name:'Acer Nitro V (Entry Gaming)', price:'₹57850', img:'Acer Nitro V (Entry Gaming).jpg'}
+// ... up to 15
+],
+Apple: [
+{name:'Apple MacBook Pro 16 (M4 Max)', price:'₹28990', img:'Apple MacBook Pro 16 (M4 Max).jpg'},
+{name:'Apple MacBook Pro 14 (M4 Pro) ', price:'₹187900', img:'Apple MacBook Pro 14 (M4 Pro).jpg'},
+{name:'Apple MacBook Pro 14 (M4)', price:'₹159900', img:'Apple MacBook Pro 14 (M4).jpg'},
+{name:'Apple MacBook Pro 14 (M5) ', price:'₹169900', img:'Apple MacBook Pro 14 (M5).jpg'},
+{name:'Apple MacBook Pro 16 (M4 Pro)', price:'₹239900', img:'Apple MacBook Pro 16 (M4 Pro).jpg'},
+{name:'Apple MacBook Pro 14 (M3)', price:'₹139900', img:'Apple MacBook Pro 14 (M3).jpg'},
+{name:'Apple MacBook Air 15 (M4)', price:'₹119490', img:'Apple MacBook Air 15 (M4).jpg'},
+{name:'Apple MacBook Air 13 (M4)', price:'₹86990', img:'Apple MacBook Air 13 (M4).jpg'},
+{name:'Apple MacBook Air 13 (M2)', price:'₹99900', img:'Apple MacBook Air 13 (M2).jpg'},
+{name:'Apple MacBook Air 15 (M3)', price:'₹124900', img:'Apple MacBook Air 15 (M3).jpg'},
+{name:'Apple MacBook Air 13 (M3)', price:'₹97900', img:'Apple MacBook Air 13 (M3).jpg'},
+{name:'Apple MacBook Air 13 (M1)', price:'₹82990', img:'Apple MacBook Air 13 (M1).jpg'},
+{name:'Apple MacBook Pro 14 (M3)', price:'₹139900', img:'Apple MacBook Pro 14 (M3).jpg'},
+{name:'Apple MacBook Pro 16 (M3)', price:'₹199900', img:'Apple MacBook Pro 16 (M3).jpg'},
+{name:'Apple MacBook Pro 16 (M4)', price:'₹249900', img:'Apple MacBook Pro 16 (M4).jpg'}
+// ... up to 15
+],
+HP: [
+{name:'HP Victus Gaming Laptop', price:'₹61990', img:'HP Victus Gaming Laptop.jpg'},
+{name:'HP 15‑fc0389AU (Ryzen 5)', price:'₹40190', img:'HP 15‑fc0389AU (Ryzen 5).jpg'},
+{name:'HP 250 G10 15.6″ (Core i5)', price:'₹48990', img:'HP 250 G10 15.6″ (Core i5).jpg'},
+{name:'HP 15‑fd0572TU 15.6', price:'₹36490', img:'HP 15‑fd0572TU 15.6.jpg'},
+{name:'HP Laptop 15 (Ryzen 5 7520U', price:'₹31330', img:'HP Laptop 15 (Ryzen 5 7520U.jpg'},
+{name:'HP Laptop 15s (Pentium N6000)', price:'₹27999', img:'HP Laptop 15s (Pentium N6000).jpg'},
+{name:'HP 15-fc0389AU (AltSpec)', price:'₹40000', img:'HP 15-fc0389AU (AltSpec).jpg'},
+{name:'HP Laptop 15 (Ryzen 5 Alt)', price:'₹31000', img:'HP Laptop 15 (Ryzen 5 Alt).jpg'},
+{name:'HP Victus Gaming Laptop (AltSpec)', price:'₹61500', img:'HP Victus Gaming Laptop (AltSpec).jpg'},
+{name:'HP 250 G10 15.6″ (AltSpec) ', price:'₹48990', img:'HP 250 G10 15.6″ (AltSpec).jpg'},
+{name:'HP 15-fd0467TU 15.6', price:'₹49050', img:'HP 15-fd0467TU 15.6.jpg'},
+{name:'HP Laptop 15 (Ryzen 5 LowerPrice)', price:'₹30000', img:'HP Laptop 15 (Ryzen 5 LowerPrice).jpg'},
+{name:'HP Laptop 15s (Budget)', price:'₹28000', img:'HP Laptop 15s (Budget).jpg'},
+{name:'HP 15-fc0389AU (Budget)', price:'₹40000', img:'HP 15-fc0389AU (Budget).jpg'},
+{name:'HP Victus 15-fa2191TX Gaming', price:'₹64390', img:'HP Victus 15-fa2191TX Gaming.jpg'}
+// ... up to 15
+]
+};
+
+// -------- TVs --------
+data['tvs'] = {
+Sony: [
+{name:'Sony BRAVIA 9', price:'₹598900', img:'Sony BRAVIA 9.jpg'},
+{name:'Sony BRAVIA 8 II (XR80M2)', price:'₹367900', img:'Sony BRAVIA 8 II (XR80M2).jpg'},
+{name:'Sony BRAVIA 7 (XR70)', price:'₹229900', img:'Sony BRAVIA 7 (XR70).jpg'},
+{name:'Sony BRAVIA 5 (XR50)', price:'₹179900', img:'Sony BRAVIA 5 (XR50).jpg'},
+{name:'Sony BRAVIA 2 (K-65S25BM2)', price:'₹77990', img:'Sony BRAVIA 2 (K-65S25BM2).jpg'},
+{name:'Sony BRAVIA 2 (K-55S25BM2)', price:'₹59990', img:'Sony BRAVIA 2 (K-55S25BM2).jpg'},
+{name:'Sony BRAVIA 2 (K-43S25BM2)', price:'₹36990', img:'Sony BRAVIA 2 (K-43S25BM2).jpg'},
+{name:'Sony BRAVIA 2 (K-50S20B)', price:'₹52990', img:'Sony BRAVIA 2 (K-50S20B).jpg'},
+{name:'Sony BRAVIA KD-65X82L', price:'₹95900', img:'Sony BRAVIA KD-65X82L.jpg'},
+{name:'Sony BRAVIA KD-55X82L', price:'₹62900', img:'Sony BRAVIA KD-55X82L.jpg'},
+{name:'Sony BRAVIA KD-50X64L', price:'₹54900', img:'Sony BRAVIA KD-50X64L.jpg'},
+{name:'Sony BRAVIA KD-43X64L ', price:'₹36290', img:'Sony BRAVIA KD-43X64L.jpg'},
+{name:'Sony BRAVIA KD-43X74K', price:'₹37990', img:'Sony BRAVIA KD-43X74K.jpg'},
+{name:'Sony BRAVIA KD-55X74K', price:'₹52990', img:'Sony BRAVIA KD-55X74K.jpg'},
+{name:'Sony BRAVIA KD-65X74L', price:'₹75990', img:'Sony BRAVIA KD-65X74L.jpg'}
+// ... up to 10
+],
+Nokia: [
+{name:'Nokia 32TAHDN', price:'₹14999', img:'Nokia 32TAHDN.jpg'},
+{name:'Nokia 43FHDADNDT8P', price:'₹22999', img:'Nokia 43FHDADNDT8P.jpg'},
+{name:'Nokia 43FHDADNDT52X', price:'₹23999', img:'Nokia 43FHDADNDT52X.jpg'},
+{name:'Nokia 50UHDADNDT8P', price:'₹30100', img:'Nokia 50UHDADNDT8P.jpg'},
+{name:'Nokia 50UHDADNDT52X', price:'₹30100', img:'Nokia 50UHDADNDT52X.jpg'},
+{name:'Nokia 55UHDADNDT8P', price:'₹28999', img:'Nokia 55UHDADNDT8P.jpg'},
+{name:'Nokia 55UHDADNDT52X', price:'₹45999', img:'Nokia 55UHDADNDT52X.jpg'},
+{name:'Nokia 65UHDADNDT8P', price:'₹45999', img:'Nokia 65UHDADNDT8P.jpg'},
+{name:'Nokia 65UHDADNDT52X', price:'₹54999', img:'Nokia 65UHDADNDT52X.jpg'},
+{name:'Nokia 65CAUHDN 65', price:'₹64999', img:'Nokia 65CAUHDN 65.jpg'},
+{name:'Nokia 65TAUHDN', price:'₹69999', img:'Nokia 65TAUHDN.jpg'},
+{name:'Nokia 55UHDAQNDT5Q', price:'₹54999', img:'Nokia 55UHDAQNDT5Q.jpg'},
+{name:'Nokia 55UHDADNVVGE', price:'₹40000', img:'Nokia 55UHDADNVVGE.jpg'},
+{name:'Nokia 50UHDADNVVGE', price:'₹30100', img:'Nokia 50UHDADNVVGE.jpg'},
+{name:'Nokia 43UHDADNVVGE', price:'₹28999', img:'Nokia 43UHDADNVVGE.jpg'}
+// ... up to 10
+],
+LG: [
+{name:'LG 32LQ645BPTA', price:'₹18990', img:'LG 32LQ645BPTA.jpg'},
+{name:'LG 32LQ643BPTA', price:'₹9999', img:'LG 32LQ643BPTA.jpg'},
+{name:'LG 43UA83006LA 43', price:'₹29900', img:'LG 43UA83006LA 43.jpg'},
+{name:'LG 43UR7500PSC', price:'₹35490', img:'LG 43UR7500PSC.jpg'},
+{name:'LG 50UR7500PSC', price:'₹40390', img:'LG 50UR7500PSC.jpg'},
+{name:'LG 55UR7500PSC', price:'₹46990', img:'LG 55UR7500PSC.jpg'},
+{name:'LG 65UR7500PSC', price:'₹66990', img:'LG 65UR7500PSC.jpg'},
+{name:'LG OLED55A3PSA 55', price:'₹89000', img:'LG OLED55A3PSA 55.jpg'},
+{name:'LG OLED65A3PSA 65', price:'₹129900', img:'LG OLED65A3PSA 65.jpg'},
+{name:'LG OLED77A3PSA 77', price:'₹189900', img:'LG OLED77A3PSA 77.jpg'},
+{name:'LG OLED55B5PSA 55', price:'₹109000', img:'LG OLED55B5PSA 55.jpg'},
+{name:'LG OLED65B5PSA 65', price:'₹149000', img:'LG OLED65B5PSA 65.jpg'},
+{name:'LG OLED77B5PSA 77', price:'₹229000', img:'LG OLED77B5PSA 77.jpg'},
+{name:'LG OLED55C5PSA 55', price:'₹119000', img:'LG OLED55C5PSA 55.jpg'},
+{name:'LG OLED65C5PSA 65', price:'₹169900', img:'LG OLED65C5PSA 65.jpg'}
+// ... up to 10
+]
+};
+
+// Function to show brands of a category
+function showBrands(category){
+  document.getElementById('products').innerHTML = '';
+  let brandsDiv = document.getElementById('brands');
+  brandsDiv.innerHTML = '';
+  let brands = Object.keys(data[category]);
+  brands.forEach(brand => {
+    let div = document.createElement('div');
+    div.className = 'brand';
+    let logo = brandLogos[brand] || "images/default.jpg"; // fallback image
+    div.innerHTML = `<img src="${logo}" alt="${brand}"><h4>${brand}</h4>`;
+    div.onclick = () => showProducts(category, brand);
+    brandsDiv.appendChild(div);
+  });
+}
+
+// Function to show products of a brand
+function showProducts(category, brand){
+  let productsDiv = document.getElementById('products');
+  productsDiv.innerHTML = '';
+  let products = data[category][brand];
+  products.forEach(prod => {
+    let div = document.createElement('div');
+    div.className = 'product';
+    div.innerHTML = `<img src="${prod.img}" alt="${prod.name}"><h4>${prod.name}</h4><p>${prod.price}</p>`;
+    productsDiv.appendChild(div);
+  });
+}
+</script>
+
+</body>
+</html>
